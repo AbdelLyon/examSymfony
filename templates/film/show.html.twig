@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello filmController!
+{% endblock %}
+
+{% block body %}
+	<div class="app">
+		{{ include('includes/navbar.html.twig') }}
+
+
+		<div class="container d-flex my-4">
+			<div class=" card me-4" style="width: 60rem;">
+				<img src="{{ vich_uploader_asset(film, 'imageFile')}}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">
+						{{film.name}}
+					</h5>
+					<p class="card-text">
+						{{ film.description }}
+					</p>
+					{% if app.user %}
+						<div class="d-flex flex-row-reverse">
+							{% if app.user.username == film.author.username %}
+								<a href=" {{ path('film_delete', {id: film.id}) }} " class="btn btn-sm btn-danger ">Suprimer</a>
+								<a href=" {{ path('film_update', {id: film.id}) }} " class="btn btn-sm btn-primary mx-2">Modifier</a>
+							{% else %}
+								<a href="{{path('like', {id:film.id})}}" class="btn-like btn btn-sm btn-primary">Like
+									<span class="count">({{film.likes|length}})</span>
+								</a>
+							{% endif %}
+						</div>
+					{% else %}
+						<p>
+							{{film.likes | length}}
+						</p>
+					{% endif %}
+
+				</div>
+			</div>
+			<div class="bg-white shadow p-4" style="width: 40rem;">
+				<h4 class="fs-6">Ajouter un Commentaire</h4>
+				{{ include('comment/_form.html.twig') }}
+				<h4 class="fs-6">Commentaires</h4>
+				<div class="comments overflow-auto">
+					{% for comment in film.comments %}
+						<div class="border my-2 p-2">
+							<p>{{ comment.content }}</p>
+							<div class="d-flex justify-content-between">
+								<small class="text-muted">
+									{{ comment.createdAt | date("d/m/Y") }}
+								</small>
+							</div>
+							<div class="d-flex flex-row-reverse">
+								{% if app.user and app.user.username == film.author.username %}
+									<a href=" {{ path('comment_delete', {id: comment.id}) }} " class="btn btn-sm btn-outline-danger ">Suprimer</a>
+									<a href=" {{ path('comment_update', {id: comment.id}) }} " class="btn btn-sm btn-outline-primary mx-2">Modifier</a>
+								{% endif %}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

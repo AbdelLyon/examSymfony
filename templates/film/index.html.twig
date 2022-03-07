@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits
+{% endblock %}
+
+{% block body %}
+	{% include("includes/navbar.html.twig") %}
+	<div class=" w-75 m-auto d-flex flex-wrap justify-content-around">
+		{% for film in films %}
+			<div class="card my-4" style="width: 25rem;">
+				<img height="200" src="{{ vich_uploader_asset(film, 'imageFile')}}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">
+						{{film.name}}
+					</h5>
+					<p class="card-text text-muted">
+						Créé par:
+						{{film.author.username}}
+					</p>
+					<div class="d-flex flex-row-reverse">
+						<a href=" {{ path('film_show', {id: film.id}) }} " class="btn  btn-sm btn-primary">Voir</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

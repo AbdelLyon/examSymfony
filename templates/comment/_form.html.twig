@@ -1,0 +1,16 @@
+{{ form_start(form_comment,  {'action':  path('comment_new', { id:film.id }), 'attr': {'id': 'form-comment'}}) }}
+
+<div class="form-group mb-3">
+	{{ form_errors(form_comment.content) }}
+	{{ form_widget(form_comment.content, {'attr': {'placeholder': 'Commentaire', 'class': 'form-control'}}) }}
+	{{ form_help(form_comment.content) }}
+</div>
+
+<div class="d-flex justify-content-end">
+
+	<button author="{{ app.user ? app.user.username : null}}" type="submit" class=" btn-addComment btn btn-sm btn-primary">
+		Ajouter
+	</button>
+</div>
+
+{{ form_end(form_comment) }}

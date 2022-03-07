@@ -1,0 +1,42 @@
+<div class="bg-white shadow p-5 w-75 m-auto mt-5">
+	<h4 class="fs-5 mb-3">ajouter un film</h4>
+	{{ form_start(form) }}
+
+	<div class="form-group my-3">
+		{{ form_errors(form.name) }}
+		{{ form_widget(form.name, {'attr': {'placeholder': 'Nom', 'class': 'form-control'}}) }}
+		{{ form_help(form.name) }}
+	</div>
+
+	<div class="form-group mb-3">
+		{{ form_errors(form.imageFile) }}
+		{{ form_widget(form.imageFile, {'attr': {'placeholder': 'image', 'class': 'form-control form-control-sm'}}) }}
+		{{ form_help(form.imageFile) }}
+	</div>
+
+	<div class="form-group mb-3">
+		{{ form_errors(form.description) }}
+		{{ form_widget(form.description, {'attr': {'placeholder': 'Déscription', 'class': 'form-control'}}) }}
+		{{ form_help(form.description) }}
+	</div>
+
+	<div class="form-group mb-3">
+		{{ form_errors(form.director) }}
+		{{ form_widget(form.director, {'attr': {'placeholder': 'Réalisateur', 'class': 'form-control'}}) }}
+		{{ form_help(form.director) }}
+	</div>
+
+	<div class="form-group mb-3">
+		{{ form_errors(form.releaseYear) }}
+		{{ form_widget(form.releaseYear, {'attr': {'placeholder': 'Année de sortis', 'class': 'form-control'}}) }}
+		{{ form_help(form.releaseYear) }}
+	</div>
+
+	<div class="d-flex justify-content-end">
+		<button type="submit" class="btn btn-sm btn-outline-primary">
+			Ajouter
+		</button>
+	</div>
+
+	{{ form_end(form) }}
+</div>

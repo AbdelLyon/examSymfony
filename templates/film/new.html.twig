@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!
+{% endblock %}
+
+{% block body %}
+	<div class="app">
+		{{ include('includes/navbar.html.twig') }}
+		<div class="container">
+			{{ include('film/_form.html.twig') }}
+		</div>
+	</div>
+{% endblock %}

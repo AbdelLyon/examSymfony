@@ -1,0 +1,2 @@
+ un film aura un nom (string), un (court) résumé (text), un(e) réalisateur/trice (string) et une année de sortie (datetime).
+release year
